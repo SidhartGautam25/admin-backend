@@ -70,3 +70,79 @@ export const cReport = async (req, res, next) => {
     next(err);
   }
 };
+
+export const editReport = async (req, res, next) => {
+  console.log("landed on edit report ", req.body.related);
+  let rep = {
+    title: req.body.title,
+    id: req.body.id,
+    slug: req.body.slug,
+    shortTitle: req.body.shortTitle,
+    desc: req.body.shortTitle,
+    subTitle: req.body.subTitle,
+    metaTitle: req.body.metaTitle,
+    geography: req.body.geographyTag,
+    country: req.body.countryRegion,
+    pSingle: req.body.priceSingle,
+    pTeam: req.body.priceTeam,
+    pCorp: req.body.priceCorporate,
+    pDate: req.body.publishedDate,
+    rReports: req.body.relatedReports,
+    industry: req.body.category,
+    subind: req.body.subCategory,
+    metaKey: req.body.metaKeywords,
+    metaDesc: req.body.metaDescription,
+    msHeading: req.body.msHeading,
+    msDesc: req.body.msContent,
+    msTable: req.body.msTables,
+    moTitle: req.body.moHeading,
+    moDesc: req.body.moContent,
+    sorTitle: req.body.srHeading,
+    sorDesc: req.body.srContent,
+    clTitle: req.body.clTitle,
+    clDesc: req.body.clDesc,
+    mp: req.body.mpCompanies,
+    mpTitle: req.body.mpHeading,
+    toc: req.body.tocContent,
+    faqTitle: req.body.fsHeading,
+    faqs: req.body.fsFaqs,
+    rDevDesc: req.body.rdContent,
+    rDevTitle: req.body.rdHeading,
+    kmtTitle: req.body.ktHeading,
+    kmtdesc1: req.body.ktContent1,
+    kmti1: req.body.ktImage,
+    kmti1alt: req.body.ktImageAlt1,
+    kmtsh1: req.body.ktSubHeading,
+    kmtdesc2: req.body.ktContent2,
+    kmtsh2: req.body.ktSubHeading2,
+    kmti2: req.body.ktImage2,
+    kmti2alt: req.body.ktImageAlt2,
+    base: "",
+    forcast: "",
+    study: "",
+    linki1: req.body.linki1,
+    linki2: req.body.linki2,
+    alti1: req.body.alti1,
+    alti2: req.body.alti2,
+    related: req.body.related ?? [],
+  };
+  const reportId = req.body._id; // Assuming `_id` is passed in the request body
+  if (!reportId) {
+    return res.status(400).json({ message: "Report ID is required" });
+  }
+  try {
+    const updatedReport = await Report.findByIdAndUpdate(reportId, rep, {
+      new: true, // Return the updated document
+      runValidators: true, // Ensure schema validation is applied
+    });
+
+    if (!updatedReport) {
+      return res.status(404).json({ message: "Report not found" });
+    }
+
+    console.log("Report updated successfully");
+    res.status(200).json(updatedReport);
+  } catch (err) {
+    return res.status(400).json({ message: "Error occured while updating" });
+  }
+};
