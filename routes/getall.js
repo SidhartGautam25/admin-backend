@@ -11,6 +11,7 @@ import {
   getRep,
   getpinReport,
   pinReport,
+  slugReport,
   unpinReport,
 } from "../controllers/upload.js";
 import { verifyUser } from "../utils/verifyTokens.js";
@@ -31,5 +32,6 @@ router.get("/latest-blog", getLatestInsight);
 router.get("/related-blogs", getRelatedBlogs);
 router.get("/reports/related", relatedReports);
 router.get("/blog/latest", getLatestBlog);
+router.get("/report/slug", slugReport);
 
 export default router;

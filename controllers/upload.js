@@ -83,6 +83,27 @@ export const getReport = async (req, res, next) => {
   }
 };
 
+function slugToTitle(slug) {
+  // Replace hyphens with spaces and convert to lowercase
+  return slug
+    .replace(/-/g, " ")
+    .replace(/\bmarket\b/i, "")
+    .trim();
+}
+
+export const slugReport = async (req, res, next) => {
+  console.log("requesting is coming to slugReport controller");
+  try {
+    const slug = req.query.slug;
+    console.log("slug is in slugReport ", slug);
+    let data = await Report.find({ slug });
+    console.log("data is in slugReport is ", data);
+    res.json({ data });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 export const getRep = async (req, res, next) => {
   let industry = req.query.industry;
   let page = req.query.page || 1;
@@ -239,19 +260,18 @@ export const getLatestBlog = async (req, res, next) => {
     latest.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     const data = latest.slice(0, 1);
     res.status(200).json({ data });
-    
   } catch (err) {
     res.status(500).json({
-      message:"Error occured while fetching latest blog"
-    })
+      message: "Error occured while fetching latest blog",
+    });
   }
-}
+};
 
 export const getRelatedBlogs = async (req, res, next) => {
   try {
     console.log("request is coming to get related blogs");
     const industry = req.query.industry;
-    let related = await Blog.find({ });
+    let related = await Blog.find({});
     related = related.slice(0, 4);
     res.status(200).json({ related });
   } catch (err) {
