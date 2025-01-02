@@ -53,8 +53,8 @@ app.use((req, res, next) => {
   console.log("request is coming and the request is  Cookies:", req.cookies);
   next();
 });
-app.get('/', (req, res) => {
-  res.send('Welcome to the Backend Home Route!');
+app.get("/", (req, res) => {
+  res.send("Welcome to the Backend Home Route!");
 });
 
 app.use("/api/auth", authRoute);
@@ -74,5 +74,5 @@ app.use((err, req, res, next) => {
 
 app.listen(8800, () => {
   connect();
-  console.log("Connected to backend.");
+  console.log("Running on port 8800");
 });
