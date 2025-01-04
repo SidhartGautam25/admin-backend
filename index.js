@@ -41,9 +41,8 @@ app.use(
       "https://marqstat.online",
       "http://marqstat.online",
       "https://marqstats.com",
+      "https://www.marqstats.com",
       "http://marqstats.com",
-      "http://api.marqstats.com",
-      "https://api.marqstats.com",
     ],
     credentials: true,
   })
