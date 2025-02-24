@@ -106,7 +106,6 @@ import { MailtrapClient } from "mailtrap";
 
 export const sendMails = async (req, res, next) => {
   const body = req.body;
-  console.log("body of the eq is ", body);
 
   try {
     console.log("starting to send mails");
@@ -122,7 +121,7 @@ export const sendMails = async (req, res, next) => {
 
     const reciever = {
       from: "info@marqstats.com",
-      to: "navneetnishchal1420@gmail.com",
+      to: "Arnab@marqstats.com",
       subject: "requesting mail",
       text: body.text,
     };
