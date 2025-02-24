@@ -95,9 +95,9 @@ export const slugReport = async (req, res, next) => {
   console.log("requesting is coming to slugReport controller");
   try {
     const slug = req.query.slug;
-    console.log("slug is in slugReport ", slug);
+    // console.log("slug is in slugReport ", slug);
     let data = await Report.find({ slug });
-    console.log("data is in slugReport is ", data);
+    // console.log("data is in slugReport is ", data);
     res.json({ data });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -108,9 +108,9 @@ export const getRep = async (req, res, next) => {
   let industry = req.query.industry;
   let page = req.query.page || 1;
   let subind = req.query.subind || "none";
-  console.log("before conversion ", industry);
+  // console.log("before conversion ", industry);
   // industry = conversion(industry);
-  console.log("after conversion ", industry);
+  // console.log("after conversion ", industry);
   try {
     let limit = 5;
     let skip = (page - 1) * limit;
@@ -132,15 +132,15 @@ export const getRep = async (req, res, next) => {
 
 export const getAllReports = async (req, res, next) => {
   try {
-    console.log("request is coming to get report at some page no ");
+    // console.log("request is coming to get report at some page no ");
     let page = req.query.page || 1;
     let limit = 5;
     let skip = (page - 1) * limit;
     let data = await Report.find({});
-    console.log("reached here ");
+    // console.log("reached here ");
     data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    console.log("now here ");
-    console.log("this is my type ", typeof data);
+    // console.log("now here ");
+    // console.log("this is my type ", typeof data);
     // console.log("printing data ", data);
 
     let len = data.length;

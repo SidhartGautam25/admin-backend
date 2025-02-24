@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import uploadRoute from "./routes/upload.js";
 import getallRoute from "./routes/getall.js";
+import sendMail from "./routes/mail.js";
 import bodyParser from "body-parser";
 
 const app = express();
@@ -61,6 +62,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/upload", uploadRoute);
 app.use("/api/getall", getallRoute);
+app.use("/api/mail", sendMail);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
