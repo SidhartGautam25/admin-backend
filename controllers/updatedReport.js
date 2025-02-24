@@ -1,7 +1,7 @@
 import Report from "../models/Report.js";
 
 export const cReport = async (req, res, next) => {
-  console.log("landed on create report ", req.body.related);
+  // console.log("landed on create report ", req.body.related);
   let rep = {
     title: req.body.title,
     id: req.body.id,
@@ -72,7 +72,7 @@ export const cReport = async (req, res, next) => {
 };
 
 export const editReport = async (req, res, next) => {
-  console.log("landed on edit report ", req.body.related);
+  // console.log("landed on edit report ", req.body.related);
   let rep = {
     title: req.body.title,
     id: req.body.id,
